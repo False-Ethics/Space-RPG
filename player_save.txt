@@ -1,0 +1,6 @@
+Player Name: Lin
+Ship: Diminisher
+Health: 100
+Shield: 200
+XP: 0
+Creds: 0

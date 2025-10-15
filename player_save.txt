@@ -1,6 +1,6 @@
 Player Name: Lin
-Ship: Diminisher
-Health: 100
-Shield: 200
+Ship: Solace
+Health: 400
+Shield: 400
 XP: 0
 Creds: 0

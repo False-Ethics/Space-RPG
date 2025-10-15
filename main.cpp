@@ -8,11 +8,12 @@ int main()
 
     Player player;
     player.addPlayer();
+    player.loadData();
 
-    Enemy pheonix("-={Pheonix}=-", 20, 20, 10, 15);
+    Enemy pheonix("-={Pheonix}=-", 20, 20, 5, 10);
     Enemy leonov("-={Leonov}=-", 20, 60, 15, 20);
-    Enemy goliath("-={Goliath}=-", 100, 100, 25, 40);
-    Enemy citadel("-={Citadel}=-", 100, 200, 5, 70);
+    Enemy goliath("-={Goliath}=-", 100, 100, 15, 25);
+    Enemy citadel("-={Citadel}=-", 100, 200, 5, 50);
 
     player = fight(player, pheonix, 25, 40);
     if (!player.isAlive()) return 0;
@@ -24,5 +25,6 @@ int main()
     if (!player.isAlive()) return 0;
 
     cout << "All enemies defeated! You survived the combat!" << endl;
+
     return 0;
 }

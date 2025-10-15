@@ -1,1 +1,6 @@
 *.tlog
+*.ipch
+*.json
+*.vsidx
+.vs/SpaceRPG/v17/.suo
+*.db

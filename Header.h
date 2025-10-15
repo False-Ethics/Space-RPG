@@ -12,6 +12,7 @@ public:
 
     void addPlayer();
     void saveData();
+    void loadData();
     bool isAlive();
     void damageTaken(int dmg);
 };
@@ -19,7 +20,7 @@ public:
 class Enemy {
 public:
     string name;
-    int health, shield, damage, minDamage, maxDamage;
+    int health, shield, minDamage, maxDamage;
     Enemy(string n, int h, int s, int maxD, int minD) {
         name = n;
         health = h;
@@ -31,5 +32,6 @@ public:
     bool isAlive();
     int attack();
 };
+
 Player fight(Player p, Enemy e, int playerMin, int playerMax);
 #endif

@@ -4,9 +4,9 @@
 using namespace std;
 
 void Player::addPlayer() {
-    cout << "\033[31m===== Player Creation =====\033" << endl;
-    cout << "Please type player name: ";
-    cin >> name;
+    cout << "\033[31m=============== Player Creation ===============\033" << endl;
+    cout << "aPlease type your name: "; //if it works, it works. 
+    getline(cin, name);
     cout << endl;
     cout << "Player name: -={" << name << "}=-" << endl;
     cout << endl;
@@ -14,6 +14,8 @@ void Player::addPlayer() {
     cout << "=============== Please Choose your Ship ===============" << endl;
     cout << "1. Solace - Nano Cluster Repair: repairs 45% health" << endl;
     cout << "2. Diminisher - Weaken Shields: 50% shield penetration" << endl;
+    cout << "*I know what you are thinking, don't do it." << endl;
+    cout << endl;
     cout << "-={" << name << "}=- selects: ";
     cin >> ship;
     cout << endl;
@@ -25,13 +27,13 @@ void Player::addPlayer() {
         cout << "-={" << name << "}=- has selected Diminisher" << endl << endl;
     }
     else {
-        cout << "Invalid input" << endl;
-        return;
+        cout << "Invalid input: try again" << endl;
+        addPlayer();
     }
     xp = 0;
     creds = 0;
-    health = 400;
-    shields = 400;
+    health = 200;
+    shields = 200;
 
     cout << "Health: " << health << endl;
     cout << "Shield: " << shields << endl;
@@ -40,9 +42,9 @@ void Player::addPlayer() {
     saveData();
 }
 void Player::saveData() {
-    ofstream file("player_save.txt");
+    ofstream file("-={" + name + "}=-.txt");
     if (file.is_open()) {
-        file << "Player Name: " << name << endl;
+        file << "Player name: -={" << name << "}=-" << endl;
         if (ship == 1)
             file << "Ship: Solace" << endl;
         else
@@ -52,21 +54,21 @@ void Player::saveData() {
         file << "XP: " << xp << endl;
         file << "Creds: " << creds << endl;
         file.close();
-        /*cout << "Save successful! Player data written to player_save.txt" << endl;*/
+        cout << "Save successful! Player data written to player_save.txt" << endl;
     }
     else {
         cout << "Error: Could not open save file!" << endl;
     }
 }
 void Player::loadData() {
-    name = "";
+    name = name;
     ship = 0;
-    health = 400;
-    shields = 450;
+    health = health;
+    shields = shields;
     xp = 0;
     creds = 0;
 
-    ifstream file("player_save.txt");
+    ifstream file("-={" + name + "}=-.txt");
     if (file.is_open()) {
         file >> name;
         file >> ship;
@@ -97,7 +99,7 @@ void Player::damageTaken(int dmg) {
         }
         shields -= shieldDmg;
         dmg -= shieldDmg;
-        cout << name << " shield absorbs " << shieldDmg << " damage." << endl;
+        cout << "-={" << name << "}=- shield absorbs " << shieldDmg << " damage." << endl;
     }
     if (dmg > 0) {
         health -= dmg;
@@ -133,35 +135,43 @@ int Enemy::attack() {
 }
 
 Player fight(Player p, Enemy e, int playerMin, int playerMax) {
-    cout << "--- " << e.name << " appears! ---" << endl;
-
+    cout << endl;
+    cout << "\\\\\\ " << e.name << " appears! ///" << endl; //if it works, it works. 
+    cout << endl;
     cout << "Press Enter to start combat...";
+    cout << endl;
     cin.ignore(); 
+
 
     while (p.isAlive() && e.isAlive()) {
         cout << endl;
-        cout << "===== Status =====" << endl;
-        cout << p.name << " - Health: " << p.health << ", Shield: " << p.shields << endl;
-        cout << e.name << " - Health: " << e.health << ", Shield: " << e.shield << endl << endl;
+        while (p.shields, e.shield < 0) {
+            p.shields, e.shield = 0;
+        }
+        cout << "=============== Status ===============" << endl;
+        cout << "-={" << p.name << "}=-" << " - Health: " << p.health << ", Shield: " << p.shields << endl;
+        cout << "-={" << p.name << "}=-" << " - Health: " << e.health << ", Shield: " << e.shield << endl << endl;
         cout << "Press Enter to attack...";
         cin.ignore();
         cout << endl;
 
         
         int dmg = playerMin + rand() % (playerMax - playerMin + 1);
-        cout << p.name << " attacks " << e.name << " for " << dmg << " damage!" << endl;
+        cout << "-={" << p.name << "}=-" << " attacks " << e.name << " for " << dmg << " damage!" << endl;
         e.damageTaken(dmg);
 
         if (!e.isAlive()) {
-            cout << e.name << " defeated!\n" << endl;
+            cout << e.name << " defeated!" << endl;
+            cout << endl;
             break;
         }
         int enemyDmg = e.attack();
-        cout << e.name << " attacks " << p.name << " for " << enemyDmg << " damage!" << endl;
+        cout << e.name << " attacks " << "-={" << p.name << "}=-" << " for " << enemyDmg << " damage!" << endl;
         p.damageTaken(enemyDmg);
 
         if (!p.isAlive()) {
-            cout << p.name << " has been defeated!\n";
+            cout << "-={" << p.name << "}=-" << " has been defeated!";
+            cout << endl;
             return p;
         }
     }

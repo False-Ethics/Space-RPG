@@ -14,8 +14,8 @@ void Player::addPlayer() {
     cout << "=============== Please Choose your Ship ===============" << endl;
     cout << "1. Solace - Nano Cluster Repair: repairs 45% health" << endl;
     cout << "2. Diminisher - Weaken Shields: 50% shield penetration" << endl;
-    cout << "*I know what you are thinking, don't do it." << endl;
     cout << endl;
+    cout << ">>>>> I know what you are thinking, don't do it. <<<<<" << endl;
     cout << "-={" << name << "}=- selects: ";
     cin >> ship;
     cout << endl;
@@ -54,7 +54,7 @@ void Player::saveData() {
         file << "XP: " << xp << endl;
         file << "Creds: " << creds << endl;
         file.close();
-        cout << "Save successful! Player data written to player_save.txt" << endl;
+        cout << "Save successful! Player data written to -={" << name << "}=-.txt" << endl;
     }
     else {
         cout << "Error: Could not open save file!" << endl;
